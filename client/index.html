@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Cabinet d’assurances | Devis rapide en ligne</title>
+    <meta
+      name="description"
+      content="Obtenez rapidement un devis d’assurance auto, mutuelle santé ou prévoyance avec un accompagnement personnalisé et un rappel prioritaire." />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="apple-touch-icon" href="/images/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet" />
+    <script>
+      window.__trackingPlaceholders = {
+        gtmContainerId: "GTM-XXXXXXX",
+        googleAdsId: "AW-XXXXXXXXX",
+        googleAdsConversionLabel: "CONTACT_LEAD_PLACEHOLDER",
+      };
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () {
+        window.dataLayer.push(arguments);
+      };
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l !== "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", window.__trackingPlaceholders.gtmContainerId);
+      window.gtag("js", new Date());
+      window.gtag("config", window.__trackingPlaceholders.googleAdsId);
+      window.dataLayer.push({
+        event: "tracking_placeholders_ready",
+        gtmContainerId: window.__trackingPlaceholders.gtmContainerId,
+        googleAdsId: window.__trackingPlaceholders.googleAdsId,
+      });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["InsuranceAgency", "LocalBusiness"],
+      "name": "LTA COURTAGE",
+      "image": "https://ltacourtage.fr/images/logo.png",
+      "url": "https://ltacourtage.fr",
+      "telephone": "+33189714260",
+      "email": "contact@ltacourtage.fr",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "8 RUE GIOACCHINO ROSSINI",
+        "addressLocality": "SAINT-OUEN-L'AUMONE",
+        "postalCode": "95310",
+        "addressCountry": "FR"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    }
+    </script>
+  </head>
+
+  <body>
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script defer src="%VITE_ANALYTICS_ENDPOINT%/umami" data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+  </body>
+</html>

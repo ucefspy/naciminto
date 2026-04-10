@@ -1,0 +1,32 @@
+# Project TODO
+
+- [x] Définir l’architecture d’information du site et le système visuel premium en français
+- [x] Créer la page d’accueil avec hero, preuves de confiance, mise en avant des offres et barre CTA sticky
+- [x] Créer une navigation responsive avec menu desktop et menu hamburger mobile
+- [x] Créer les pages piliers SEO en français : Assurance auto, Mutuelle santé, Prévoyance, À propos et Contact
+- [x] Créer des pages SEO longue traîne en français pour malussé, résilié, jeune conducteur, mutuelle senior et autres profils qualifiés
+- [x] Créer deux variantes de landing pages Google Ads : formulaire et call-only
+- [x] Implémenter un bouton click-to-call et l’affichage du numéro de téléphone sur toutes les pages
+- [x] Ajouter des sections FAQ en accordéon sur les pages pertinentes
+- [x] Concevoir un formulaire multi-étapes avec validation, indicateur de progression et écran de confirmation
+- [x] Modéliser les données des leads dans la base de données et stocker chaque soumission
+- [x] Exposer une procédure backend pour enregistrer les leads avec le type d’assurance sélectionné
+- [x] Envoyer une notification au propriétaire pour chaque nouveau lead soumis
+- [x] Envoyer un email automatique au propriétaire avec les détails du prospect et le type d’assurance
+- [x] Intégrer les placeholders de tracking pour Google Tag Manager et Google Ads conversion
+- [x] Ajouter le balisage SEO technique, les métadonnées et les éléments de confiance nécessaires
+- [x] Rédiger l’ensemble des contenus et interfaces en français avec une tonalité premium et rassurante
+- [x] Écrire et exécuter des tests Vitest pour les flux backend critiques et la validation du formulaire
+- [x] Vérifier l’état du projet, corriger les régressions éventuelles et préparer la livraison finale
+- [x] Ajouter le snippet placeholder Google Tag Manager complet avec script head et bloc noscript configurables
+- [x] Ajouter le chargement placeholder du tag Google Ads avec un identifiant centralisé AW-XXXXXXXXX
+- [x] Centraliser les identifiants de conversion placeholder utilisés par le formulaire pour éviter les valeurs divergentes
+- [x] Corriger l’échec de soumission du formulaire de lead sur la page À propos
+- [x] Identifier la cause tRPC/backend du message « Votre demande n’a pas pu être enregistrée pour le moment »
+- [x] Ajouter ou ajuster les tests pour couvrir la régression de soumission depuis la page À propos
+- [x] Vérifier en fin de correctif que la soumission fonctionne sur la page À propos sans erreur API
+- [ ] Refaire la charte graphique du site en s’inspirant de lelynx.fr tout en gardant une identité originale
+- [ ] Repenser la structure des pages et des sections pour se rapprocher du parcours utilisateur du site de référence
+- [ ] Remplacer le nom de marque existant par LTA COURTAGE dans l’interface, les métadonnées et les contenus
+- [ ] Renforcer l’orientation SEO on-page en s’inspirant du positionnement et du maillage du site de référence
+- [ ] Vérifier la refonte visuelle et fonctionnelle après les changements de branding et de structure

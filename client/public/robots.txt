@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /404
+
+# Host
+Host: https://ltacourtage.fr
+
+# Sitemaps
+Sitemap: https://ltacourtage.fr/sitemap.xml

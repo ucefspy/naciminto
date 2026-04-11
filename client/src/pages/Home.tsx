@@ -100,7 +100,8 @@ export default function Home() {
   useEffect(() => {
     updateDynamicSeo(
       `${brandName} | Courtier assurance auto, mutuelle santé et prévoyance`,
-      "LTA COURTAGE vous accompagne en assurance auto, mutuelle santé et prévoyance avec une structure claire inspirée des comparateurs et un rappel rapide par un conseiller."
+      "LTA COURTAGE vous accompagne en assurance auto, mutuelle santé et prévoyance avec une structure claire inspirée des comparateurs et un rappel rapide par un conseiller.",
+      window.location.href
     );
   }, []);
 
@@ -118,8 +119,7 @@ export default function Home() {
               </Badge>
               <div className="space-y-5">
                 <h1 className="headline-balance max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
-                  Comparez plus clairement vos solutions d'assurance avec l'accompagnement de{" "}
-                  <span className="text-sky-700">LTA COURTAGE</span>.
+                  LTA COURTAGE : Votre Courtier <span className="text-sky-700">Assurance Auto, Santé & Prévoyance</span> sur Mesure
                 </h1>
                 <p className="max-w-2xl text-lg leading-8 text-slate-600">
                   Nous avons structuré le site comme un comparateur d'assurance moderne pour simplifier votre
@@ -158,7 +158,7 @@ export default function Home() {
                 href="/devis-assurance-express"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
               >
-                Accéder au formulaire express
+                Obtenez Votre Devis Gratuit en 3 Min
                 <ArrowRight className="size-4" />
               </Link>
             </div>
@@ -207,26 +207,27 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-3">
-            {productHighlights.map((item, index) => {
-              const target = index === 0 ? "/assurance-auto" : index === 1 ? "/mutuelle-sante" : "/prevoyance";
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {productHighlights.map((item) => {
               return (
                 <Card
                   key={item.title}
-                  className="overflow-hidden rounded-[32px] border-slate-200 bg-white shadow-[0_22px_60px_-36px_rgba(15,23,42,0.28)]"
+                  className="overflow-hidden rounded-[32px] border-slate-200 bg-white shadow-[0_22px_60px_-36px_rgba(15,23,42,0.28)] flex flex-col"
                 >
-                  <CardContent className="space-y-5 p-6">
-                    <div className="inline-flex rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">
-                      {index === 0 ? "Auto" : index === 1 ? "Santé" : "Prévoyance"}
+                  <CardContent className="space-y-4 p-6 pt-7 flex flex-col flex-1 relative">
+                    <div className="absolute top-0 right-7 -translate-y-1/2">
+                      <div className="inline-flex rounded-full bg-sky-50 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-sky-700 shadow-sm border border-sky-100">
+                        {item.badge}
+                      </div>
                     </div>
-                    <h3 className="text-2xl font-semibold tracking-tight text-slate-950">{item.title}</h3>
-                    <p className="text-sm leading-7 text-slate-600">{item.description}</p>
+                    <h3 className="text-xl font-semibold tracking-tight text-slate-950 mt-1">{item.title}</h3>
+                    <p className="text-sm leading-6 text-slate-600 flex-1">{item.description}</p>
                     <Link
-                      href={target}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-sky-700 no-underline hover:text-sky-800"
+                      href={item.path}
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-sky-700 no-underline hover:text-sky-800 mt-auto pt-4 border-t border-slate-100 transition-colors group"
                     >
                       Découvrir cette page
-                      <ChevronRight className="size-4" />
+                      <ChevronRight className="size-4 transform transition-transform group-hover:translate-x-1" />
                     </Link>
                   </CardContent>
                 </Card>
@@ -453,9 +454,9 @@ export default function Home() {
       <section className="section-shell">
         <div className="container grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
           <div className="space-y-4">
-            <p className="eyebrow">Questions fréquentes</p>
+            <p className="eyebrow">Vos Questions Fréquentes sur l'Assurance : Nos Réponses Claires</p>
             <h2 className="headline-balance text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-              Tout ce qu'il faut pour rassurer avant de laisser ses coordonnées.
+              Des réponses utiles pour lever les hésitations avant le contact.
             </h2>
             <p className="text-sm leading-7 text-slate-600">
               Cette FAQ soutient le SEO informationnel tout en répondant aux objections les plus fréquentes d'un

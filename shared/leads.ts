@@ -1,12 +1,17 @@
 import { z } from "zod";
 
-export const insuranceTypes = ["auto", "sante", "prevoyance"] as const;
+export const insuranceTypes = ["auto", "sante", "prevoyance", "vtc", "rcpro", "habitation", "emprunteur", "chauffage"] as const;
 export type InsuranceType = (typeof insuranceTypes)[number];
 
 export const insuranceTypeLabels: Record<InsuranceType, string> = {
   auto: "Assurance auto",
   sante: "Mutuelle santé",
   prevoyance: "Prévoyance",
+  vtc: "Assurance VTC",
+  rcpro: "RC Pro",
+  habitation: "Assurance Habitation",
+  emprunteur: "Garantie Emprunteur",
+  chauffage: "Entretien Chauffage & Clim",
 };
 
 export const leadStatuses = ["new", "contacted", "qualified", "closed"] as const;

@@ -100,6 +100,23 @@ export const navigationItems: NavItemWithSub[] = [
       { label: "Prévoyance indépendant", href: "/prevoyance-independant", description: "Sécuriser l'activité professionnelle." },
     ],
   },
+  {
+    label: "Professionnels",
+    href: "/assurance-rc-pro",
+    subItems: [
+      { label: "RC Pro", href: "/assurance-rc-pro", description: "Responsabilité civile professionnelle." },
+      { label: "Assurance VTC", href: "/assurance-vtc", description: "Couverture dédiée aux chauffeurs VTC." },
+    ],
+  },
+  {
+    label: "Habitat & Crédit",
+    href: "/assurance-habitation",
+    subItems: [
+      { label: "Assurance Habitation", href: "/assurance-habitation", description: "Protégez votre logement et vos biens." },
+      { label: "Garantie Emprunteur", href: "/garantie-emprunteur", description: "Assurez votre prêt immobilier." },
+      { label: "Entretien Chauffage", href: "/entretien-chauffage", description: "Contrats d'entretien annuels." },
+    ],
+  },
   { label: "À propos", href: "/a-propos" },
   { label: "Contact", href: "/contact" },
 ];
@@ -159,22 +176,55 @@ export const trustSignals: FeatureItem[] = [
   },
 ];
 
-export const productHighlights: FeatureItem[] = [
+export const productHighlights: Array<FeatureItem & { badge: string; path: string }> = [
   {
     title: "Assurance auto",
-    description:
-      "Pour conducteur standard, jeune permis, malussé ou résilié, avec une étude orientée budget, usage du véhicule et antécédents du contrat.",
+    badge: "Auto",
+    path: "/assurance-auto",
+    description: "Pour conducteur standard, jeune permis, malussé ou résilié, avec une étude orientée budget, usage du véhicule et antécédents du contrat.",
   },
   {
     title: "Mutuelle santé",
-    description:
-      "Pour actifs, familles et seniors recherchant un bon équilibre entre remboursements, confort de soins et lisibilité des garanties.",
+    badge: "Santé",
+    path: "/mutuelle-sante",
+    description: "Pour actifs, familles et seniors recherchant un bon équilibre entre remboursements, confort de soins et lisibilité des garanties.",
   },
   {
     title: "Prévoyance",
-    description:
-      "Pour protéger vos revenus, votre foyer et vos projets en cas d’arrêt de travail, d’invalidité, de décès ou d’aléas professionnels.",
+    badge: "Prévoyance",
+    path: "/prevoyance",
+    description: "Pour protéger vos revenus, votre foyer et vos projets en cas d’arrêt de travail, d’invalidité, de décès ou d’aléas professionnels.",
   },
+  {
+    title: "Assurance VTC",
+    badge: "Pro",
+    path: "/assurance-vtc",
+    description: "Couverture adaptée aux chauffeurs indépendants et flottes pour sécuriser l'activité de transport de personnes avec toutes les garanties RC."
+  },
+  {
+    title: "RC Pro",
+    badge: "Pro",
+    path: "/assurance-rc-pro",
+    description: "Protection complète de votre entreprise contre les dommages causés aux tiers, adaptée aux spécificités de votre métier."
+  },
+  {
+    title: "Assurance Habitation",
+    badge: "Logement",
+    path: "/assurance-habitation",
+    description: "Garanties sur mesure pour les locataires et propriétaires, protégeant vos biens contre les aléas du quotidien."
+  },
+  {
+    title: "Garantie Emprunteur",
+    badge: "Crédit",
+    path: "/garantie-emprunteur",
+    description: "Sécurisez votre prêt immobilier au meilleur prix grâce à la délégation, sans sacrifier l'équivalence des garanties."
+  },
+  {
+    title: "Entretien Chauffage",
+    badge: "Services",
+    path: "/entretien-chauffage",
+    description: "Contrats de maintenance et dépannage pour chaudières et PAC afin de prolonger la durée de vie de vos équipements."
+  }
 ];
 
 const commonDifferentiators: FeatureItem[] = [
@@ -202,7 +252,7 @@ export const pageContentBySlug: Record<string, PageContent> = {
     navLabel: "Assurance auto",
     shortTitle: "Auto",
     eyebrow: "Comparateur assurance auto",
-    title: "Comparez une assurance auto adaptée à votre profil avec l’accompagnement de LTA COURTAGE",
+    title: "Assurance Auto Personnalisée : Devis Rapide & Conseil Expert avec LTA COURTAGE",
     description:
       "Jeune permis, conducteur expérimenté, malussé ou résilié : LTA COURTAGE vous aide à identifier une assurance auto cohérente avec votre budget, votre historique et votre niveau de couverture recherché.",
     seoTitle: "Assurance auto : devis et accompagnement courtier",
@@ -1084,6 +1134,246 @@ export const pageContentBySlug: Record<string, PageContent> = {
     ],
     ctaLabel: "Choisir ma formule avec un conseiller",
   },
+  vtc: {
+    slug: "vtc",
+    path: "/assurance-vtc",
+    navLabel: "Assurance VTC",
+    shortTitle: "VTC",
+    eyebrow: "Assurance Professionnelle",
+    title: "Assurance VTC : Roulez en toute sérénité avec une couverture sur mesure",
+    description: "Que vous soyez chauffeur indépendant ou gestionnaire de flotte, LTA COURTAGE vous propose des garanties adaptées (Responsabilité Civile Circulation, Exploitation) pour sécuriser votre activité de transport de personnes.",
+    seoTitle: "Assurance VTC : Devis et garanties pour chauffeurs",
+    seoDescription: "Obtenez un devis pour votre assurance VTC. Couverture complète pour chauffeurs indépendants et flottes.",
+    sourceKind: "seo",
+    insuranceType: "vtc",
+    heroHighlights: [
+      "Responsabilité Civile Circulation et Exploitation",
+      "Garanties pour votre véhicule professionnel",
+      "Protection juridique spécifique au métier"
+    ],
+    benefits: [
+      {
+        title: "Couverture adaptée à votre activité",
+        description: "Nous prenons en compte les spécificités de votre statut (indépendant, flotte) pour ne vous proposer que les garanties nécessaires."
+      },
+      {
+        title: "Conseil personnalisé",
+        description: "Un conseiller dédié vous accompagne dans le choix de la formule (Tiers ou Tous Risques) en adéquation avec la valeur de votre véhicule."
+      },
+      {
+        title: "Assistance rapide",
+        description: "En cas de sinistre, des services d'assistance réactifs pour limiter l'immobilisation de votre véhicule de travail."
+      }
+    ],
+    differentiators: commonDifferentiators,
+    faq: [
+      {
+        question: "L'assurance RC Exploitation est-elle obligatoire pour les VTC ?",
+        answer: "Oui, la Responsabilité Civile Professionnelle (Exploitation) est obligatoire pour exercer la profession de chauffeur VTC."
+      },
+      {
+        question: "Assurez-vous les conducteurs malussés ?",
+        answer: "Oui, nous avons des solutions pour les chauffeurs ayant un malus ou ayant été résiliés par leur précédent assureur."
+      },
+      {
+        question: "Que couvre la formule Tous Risques VTC ?",
+        answer: "Elle couvre les dommages causés aux tiers, mais également les dommages subis par votre véhicule, même en cas d'accident responsable."
+      }
+    ],
+    ctaLabel: "Demander un devis VTC"
+  },
+  rcpro: {
+    slug: "rcpro",
+    path: "/assurance-rc-pro",
+    navLabel: "RC Pro",
+    shortTitle: "RC Pro",
+    eyebrow: "Assurance Professionnelle",
+    title: "RC Pro : Sécurisez votre entreprise face aux imprévus liés à votre activité",
+    description: "Protégez votre entreprise contre les dommages causés aux tiers (clients, fournisseurs). LTA COURTAGE analyse votre secteur pour dimensionner la garantie Responsabilité Civile Professionnelle la plus pertinente.",
+    seoTitle: "Assurance RC Pro : Protégez votre responsabilité civile professionnelle",
+    seoDescription: "Demandez votre devis pour une RC Pro adaptée à votre secteur d'activité : BTP, Services, Commerce ou Médical.",
+    sourceKind: "seo",
+    insuranceType: "rcpro",
+    heroHighlights: [
+      "Prise en charge des dommages matériels et immatériels",
+      "Formules ajustées à votre chiffre d'affaires",
+      "Accompagnement d'un courtier expert"
+    ],
+    benefits: [
+      {
+        title: "Analyse des risques de votre secteur",
+        description: "Nous étudions les spécificités de votre métier pour ne vous proposer que les assurances pertinentes (RC Exploitation, RC Pro)."
+      },
+      {
+        title: "Transparence des coûts",
+        description: "Des cotisations dimensionnées sur mesure en fonction de l'évolution de votre chiffre d'affaires."
+      },
+      {
+        title: "Tranquillité d'esprit",
+        description: "En cas de litige, vous êtes protégé financièrement contre les réclamations de vos clients ou partenaires."
+      }
+    ],
+    differentiators: commonDifferentiators,
+    faq: [
+      {
+        question: "La RC Pro est-elle obligatoire ?",
+        answer: "Elle est fortement recommandée pour toutes les entreprises, et même rendue obligatoire par la loi pour les professions réglementées."
+      },
+      {
+        question: "Quelle différence entre RC Pro et RC Exploitation ?",
+        answer: "La RC Pro couvre les fautes professionnelles (erreur de conseil, omission), tandis que la RC Exploitation couvre les dommages causés dans le cadre de la vie de l'entreprise hors prestation."
+      },
+      {
+        question: "Comment est calculé le tarif de ma RC Pro ?",
+        answer: "Il dépend de votre secteur d'activité, des garanties choisies et de votre chiffre d'affaires annuel estimé."
+      }
+    ],
+    ctaLabel: "Demander une étude RC Pro"
+  },
+  habitation: {
+    slug: "habitation",
+    path: "/assurance-habitation",
+    navLabel: "Habitation",
+    shortTitle: "Habitation",
+    eyebrow: "Assurance Logement",
+    title: "Assurance Habitation : Une protection complète pour votre logement et vos biens",
+    description: "Locataire, propriétaire ou PNO : protégez votre appartement ou votre maison contre les incendies, les dégâts des eaux, et les vols avec les conseils de LTA COURTAGE.",
+    seoTitle: "Assurance Habitation : Devis rapide et comparatif de garanties",
+    seoDescription: "Comparez les offres d'assurance habitation adaptées à votre profil : locataire, propriétaire occupant ou non occupant.",
+    sourceKind: "seo",
+    insuranceType: "habitation",
+    heroHighlights: [
+      "Garanties contre les risques locatifs et dommages aux biens",
+      "Options personnalisables (vol, équipements)",
+      "Couverture pour locataires et propriétaires"
+    ],
+    benefits: [
+      {
+        title: "Évaluation adéquate de votre mobilier",
+        description: "Nous vous aidons à ajuster le montant du capital mobilier pour éviter les sous-assurances."
+      },
+      {
+        title: "Formules modulables",
+        description: "Ajoutez seulement les garanties utiles à votre situation (rééquipement à neuf, dommages électriques)."
+      },
+      {
+        title: "Soutien en cas de sinistre",
+        description: "Notre accompagnement se poursuit lors du processus d'indemnisation pour s'assurer que vos droits sont respectés."
+      }
+    ],
+    differentiators: commonDifferentiators,
+    faq: [
+      {
+        question: "L'assurance habitation est-elle obligatoire ?",
+        answer: "Oui, elle est obligatoire pour les locataires. Pour les propriétaires, elle est fortement recommandée pour protéger leur investissement."
+      },
+      {
+        question: "Qu'est-ce qu'une assurance PNO ?",
+        answer: "L'assurance Propriétaire Non Occupant (PNO) couvre le propriétaire d'un bien en location contre les risques liés à sa responsabilité."
+      },
+      {
+        question: "Que couvre la garantie vol ?",
+        answer: "Elle indemnise les objets volés ou détériorés lors d'une effraction, à condition que les exigences de sécurité soient respectées."
+      }
+    ],
+    ctaLabel: "Obtenir un devis Habitation"
+  },
+  emprunteur: {
+    slug: "emprunteur",
+    path: "/garantie-emprunteur",
+    navLabel: "Emprunteur",
+    shortTitle: "Garantie Emprunteur",
+    eyebrow: "Assurance de Prêt",
+    title: "Garantie Emprunteur : Assurez votre prêt immobilier au juste prix",
+    description: "Réduisez le coût de votre crédit immobilier. Grâce à la Loi Lemoine, changez d'assurance à tout moment avec les mêmes garanties que votre banque, mais à un tarif optimisé par LTA COURTAGE.",
+    seoTitle: "Garantie Emprunteur : Devis et changement d'assurance de prêt",
+    seoDescription: "Optez pour une assurance de prêt immobilier plus économique en changeant à tout moment grâce à la Loi Lemoine.",
+    sourceKind: "seo",
+    insuranceType: "emprunteur",
+    heroHighlights: [
+      "Jusqu'à des milliers d'euros d'économies sur votre crédit",
+      "Changement d'assurance facilité par la Loi Lemoine",
+      "Équivalence des garanties exigées par la banque"
+    ],
+    benefits: [
+      {
+        title: "Comparaison des offres du marché",
+        description: "Nous mettons en concurrence les meilleurs contrats pour vous obtenir un taux ultra-compétitif tout en respectant l'équivalence des garanties."
+      },
+      {
+        title: "Accompagnement administratif gratuit",
+        description: "Nous nous occupons entièrement des démarches de résiliation auprès de votre banque pour un passage en douceur."
+      },
+      {
+        title: "Couverture en cas de coup dur",
+        description: "Garanti de prise en charge du remboursement de votre prêt en cas de décès, invalidité ou incapacité."
+      }
+    ],
+    differentiators: commonDifferentiators,
+    faq: [
+      {
+        question: "Puis-je changer d'assurance emprunteur n'importe quand ?",
+        answer: "Oui, grâce à la Loi Lemoine de 2022, il est possible de résilier et changer son assurance emprunteur à tout moment, sans frais ni pénalités."
+      },
+      {
+        question: "Ma banque peut-elle refuser la nouvelle assurance ?",
+        answer: "Non, à condition que le nouveau contrat respecte le principe d'équivalence du niveau de garanties exigé par votre banque."
+      },
+      {
+        question: "L'assurance emprunteur est-elle remboursée par anticipation ?",
+        answer: "Les cotisations d'assurance sont souvent liées au capital restant dû. En cas de remboursement anticipé du prêt, l'assurance prend fin."
+      }
+    ],
+    ctaLabel: "Comparer les assurances de prêt"
+  },
+  chauffage: {
+    slug: "chauffage",
+    path: "/entretien-chauffage",
+    navLabel: "Chauffage",
+    shortTitle: "Entretien Chauffage",
+    eyebrow: "Services liés au logement",
+    title: "Contrat d'entretien : Préservez vos équipements de chauffage et climatisation",
+    description: "Évitez les pannes en pleine saison avec un contrat d'entretien régulier pour votre chaudière, pompe à chaleur ou climatiseur. LTA COURTAGE vous guide vers des partenaires fiables.",
+    seoTitle: "Entretien chauffage et clim : Contrats et dépannage",
+    seoDescription: "Souscrivez à un contrat d'entretien annuel pour votre chaudière, pompe à chaleur ou clim, et prolongez la vie de vos équipements.",
+    sourceKind: "seo",
+    insuranceType: "chauffage",
+    heroHighlights: [
+      "Maintenance préventive obligatoire et recommandée",
+      "Intervention sur chaudières, PAC et climatiseurs",
+      "Formules à la carte pour s'adapter à votre budget"
+    ],
+    benefits: [
+      {
+        title: "Sécurité et conformité",
+        description: "L'entretien annuel d'une chaudière est une obligation légale pour des raisons de sécurité (monoxyde de carbone)."
+      },
+      {
+        title: "Optimisation de la consommation",
+        description: "Un équipement bien entretenu consomme moins d'énergie et tombe moins souvent en panne, allongeant ainsi sa durée de vie."
+      },
+      {
+        title: "Tranquillité d'esprit",
+        description: "En cas de souci, votre contrat d'entretien inclut souvent le déplacement et la main-d'œuvre pour un dépannage rapide."
+      }
+    ],
+    differentiators: commonDifferentiators,
+    faq: [
+      {
+        question: "L'entretien d'une chaudière est-il obligatoire ?",
+        answer: "Oui, un entretien annuel est imposé par la loi pour les chaudières au gaz, au fioul et au bois afin de prévenir tout risque sanitaire."
+      },
+      {
+        question: "Que comprend un contrat d'entretien ?",
+        answer: "Il inclut généralement la visite annuelle (nettoyage, vérification), ainsi que le déplacement du technicien en cas de panne."
+      },
+      {
+        question: "Les pompes à chaleur nécessitent-elles un entretien ?",
+        answer: "Oui, une inspection bisannuelle est exigée pour les pompes à chaleur selon la puissance de l'équipement."
+      }
+    ],
+    ctaLabel: "Demander une offre d'entretien"
+  },
 };
 
 export const seoPages = [
@@ -1095,5 +1385,10 @@ export const seoPages = [
   pageContentBySlug.jeuneConducteur,
   pageContentBySlug.senior,
   pageContentBySlug.independant,
+  pageContentBySlug.vtc,
+  pageContentBySlug.rcpro,
+  pageContentBySlug.habitation,
+  pageContentBySlug.emprunteur,
+  pageContentBySlug.chauffage,
 ];
 

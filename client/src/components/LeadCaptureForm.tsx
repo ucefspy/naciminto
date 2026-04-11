@@ -74,6 +74,16 @@ export default function LeadCaptureForm({
   const [santeGarantie, setSanteGarantie] = useState<string>("");
   const [prevoyanceStatut, setPrevoyanceStatut] = useState<string>("");
   const [prevoyanceObjectif, setPrevoyanceObjectif] = useState<string>("");
+  const [vtcStatut, setVtcStatut] = useState<string>("");
+  const [vtcFormule, setVtcFormule] = useState<string>("");
+  const [rcproSecteur, setRcproSecteur] = useState<string>("");
+  const [rcproCA, setRcproCA] = useState<string>("");
+  const [habStatut, setHabStatut] = useState<string>("");
+  const [habType, setHabType] = useState<string>("");
+  const [empProjet, setEmpProjet] = useState<string>("");
+  const [empMontant, setEmpMontant] = useState<string>("");
+  const [chauffType, setChauffType] = useState<string>("");
+  const [chauffBesoin, setChauffBesoin] = useState<string>("");
 
   const defaultValues = useMemo<LeadFormValues>(
     () => ({
@@ -131,10 +141,30 @@ export default function LeadCaptureForm({
       const s = prevoyanceStatut || "Non renseigné";
       const o = prevoyanceObjectif || "À déterminer";
       profileStr = `Prévoyance - Statut: ${s} | Objectif: ${o}`;
+    } else if (selectedInsuranceType === "vtc") {
+      const s = vtcStatut || "Non renseigné";
+      const f = vtcFormule || "À déterminer";
+      profileStr = `VTC - Statut: ${s} | Formule: ${f}`;
+    } else if (selectedInsuranceType === "rcpro") {
+      const s = rcproSecteur || "Non renseigné";
+      const c = rcproCA || "À déterminer";
+      profileStr = `RC Pro - Secteur: ${s} | CA: ${c}`;
+    } else if (selectedInsuranceType === "habitation") {
+      const s = habStatut || "Non renseigné";
+      const t = habType || "À déterminer";
+      profileStr = `Habitation - Statut: ${s} | Type: ${t}`;
+    } else if (selectedInsuranceType === "emprunteur") {
+      const p = empProjet || "Non renseigné";
+      const m = empMontant || "À déterminer";
+      profileStr = `Emprunteur - Projet: ${p} | Montant: ${m}`;
+    } else if (selectedInsuranceType === "chauffage") {
+      const t = chauffType || "Non renseigné";
+      const b = chauffBesoin || "À déterminer";
+      profileStr = `Chauffage - Type: ${t} | Besoin: ${b}`;
     }
     
     setValue("profile", profileStr);
-    if (autoProfil || autoFormule || santeProfil || santeGarantie || prevoyanceStatut || prevoyanceObjectif) {
+    if (autoProfil || autoFormule || santeProfil || santeGarantie || prevoyanceStatut || prevoyanceObjectif || vtcStatut || rcproSecteur || habStatut || empProjet || chauffType) {
        clearErrors("profile");
     }
   }, [
@@ -145,6 +175,11 @@ export default function LeadCaptureForm({
     santeGarantie,
     prevoyanceStatut,
     prevoyanceObjectif,
+    vtcStatut, vtcFormule,
+    rcproSecteur, rcproCA,
+    habStatut, habType,
+    empProjet, empMontant,
+    chauffType, chauffBesoin,
     setValue,
     clearErrors
   ]);
@@ -160,6 +195,26 @@ export default function LeadCaptureForm({
     }
     if (selectedInsuranceType === "prevoyance" && !prevoyanceStatut) {
       toast.error("Veuillez choisir votre statut professionnel.");
+      return false;
+    }
+    if (selectedInsuranceType === "vtc" && !vtcStatut) {
+      toast.error("Veuillez choisir votre statut pour l'assurance VTC.");
+      return false;
+    }
+    if (selectedInsuranceType === "rcpro" && !rcproSecteur) {
+      toast.error("Veuillez choisir votre secteur d'activité.");
+      return false;
+    }
+    if (selectedInsuranceType === "habitation" && !habStatut) {
+      toast.error("Veuillez choisir votre statut (locataire/propriétaire).");
+      return false;
+    }
+    if (selectedInsuranceType === "emprunteur" && !empProjet) {
+      toast.error("Veuillez indiquer votre projet (nouveau/renégociation).");
+      return false;
+    }
+    if (selectedInsuranceType === "chauffage" && !chauffType) {
+      toast.error("Veuillez indiquer le type d'équipement.");
       return false;
     }
     return true;
@@ -210,10 +265,27 @@ export default function LeadCaptureForm({
       };
 
       trackingWindow.dataLayer = trackingWindow.dataLayer ?? [];
+      
+      // Séparation First Name / Last Name en gérant le fait qu'il n'y ait qu'un seul champ
+      const nameParts = payload.fullName.trim().split(" ");
+      const firstName = nameParts[0] || "";
+      const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
+
       trackingWindow.dataLayer.push({
         event: "lead_submission",
         insurance_type: payload.insuranceType,
         source_kind: payload.sourceKind,
+        // Enhanced Conversions Data (GTM va hasher ces informations automatiquement si configuré)
+        enhanced_conversion_data: {
+          email: payload.email,
+          phone_number: payload.phone,
+          address: {
+            first_name: firstName,
+            last_name: lastName,
+            postal_code: payload.postalCode,
+            country: "FR"
+          }
+        }
       });
 
       const googleAdsId = trackingWindow.__trackingPlaceholders?.googleAdsId ?? "AW-XXXXXXXXX";
@@ -235,6 +307,11 @@ export default function LeadCaptureForm({
       setAutoProfil(""); setAutoFormule("");
       setSanteProfil(""); setSanteGarantie("");
       setPrevoyanceStatut(""); setPrevoyanceObjectif("");
+      setVtcStatut(""); setVtcFormule("");
+      setRcproSecteur(""); setRcproCA("");
+      setHabStatut(""); setHabType("");
+      setEmpProjet(""); setEmpMontant("");
+      setChauffType(""); setChauffBesoin("");
     } catch (error) {
       console.error(error);
       toast.error("Une erreur est survenue. Veuillez réessayer ou nous appeler directement.");
@@ -412,6 +489,110 @@ export default function LeadCaptureForm({
                   </div>
                 </div>
               )}
+
+              {selectedInsuranceType === "vtc" && (
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <Label className="text-slate-950 font-semibold">Quel est votre statut pour cette assurance VTC ?</Label>
+                    <div className="grid gap-3 grid-cols-2">
+                      <SelectButton active={vtcStatut === "Chauffeur indépendant"} label="Chauffeur indépendant" onClick={() => setVtcStatut("Chauffeur indépendant")} />
+                      <SelectButton active={vtcStatut === "Flotte / Capacitaire"} label="Flotte / Capacitaire" onClick={() => setVtcStatut("Flotte / Capacitaire")} />
+                      <SelectButton active={vtcStatut === "Conducteur malussé ou résilié"} label="Malussé / Résilié" onClick={() => setVtcStatut("Conducteur malussé ou résilié")} />
+                      <SelectButton active={vtcStatut === "En création"} label="Société en création" onClick={() => setVtcStatut("En création")} />
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <Label className="text-slate-950 font-semibold">Quelle formule recherchez-vous ?</Label>
+                    <div className="grid gap-3 grid-cols-2">
+                      <SelectButton active={vtcFormule === "Tous risques VTC"} label="Tous risques (Recommandé)" onClick={() => setVtcFormule("Tous risques VTC")} />
+                      <SelectButton active={vtcFormule === "Tiers VTC"} label="Tiers / Intermédiaire" onClick={() => setVtcFormule("Tiers VTC")} />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {selectedInsuranceType === "rcpro" && (
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <Label className="text-slate-950 font-semibold">Dans quel secteur d'activité exercez-vous ?</Label>
+                    <div className="grid gap-3 grid-cols-2">
+                      <SelectButton active={rcproSecteur === "BTP / Construction"} label="BTP / Construction" onClick={() => setRcproSecteur("BTP / Construction")} />
+                      <SelectButton active={rcproSecteur === "Services / Conseil"} label="Services / Conseil" onClick={() => setRcproSecteur("Services / Conseil")} />
+                      <SelectButton active={rcproSecteur === "Commerce"} label="Commerce" onClick={() => setRcproSecteur("Commerce")} />
+                      <SelectButton active={rcproSecteur === "Médical / Bien-être"} label="Médical / Bien-être" onClick={() => setRcproSecteur("Médical / Bien-être")} />
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <Label className="text-slate-950 font-semibold">Quel est votre chiffre d'affaires (estimé) ?</Label>
+                    <div className="grid gap-3 grid-cols-2">
+                      <SelectButton active={rcproCA === "Moins de 50 000 €"} label="< 50 000 €" onClick={() => setRcproCA("Moins de 50 000 €")} />
+                      <SelectButton active={rcproCA === "Plus de 50 000 €"} label="> 50 000 €" onClick={() => setRcproCA("Plus de 50 000 €")} />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {selectedInsuranceType === "habitation" && (
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <Label className="text-slate-950 font-semibold">Êtes-vous propriétaire ou locataire ?</Label>
+                    <div className="grid gap-3 grid-cols-1 sm:grid-cols-3">
+                      <SelectButton active={habStatut === "Locataire"} label="Locataire" onClick={() => setHabStatut("Locataire")} />
+                      <SelectButton active={habStatut === "Propriétaire occupant"} label="Propriétaire occupant" onClick={() => setHabStatut("Propriétaire occupant")} />
+                      <SelectButton active={habStatut === "Propriétaire non occupant (PNO)"} label="PNO" onClick={() => setHabStatut("Propriétaire non occupant (PNO)")} />
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <Label className="text-slate-950 font-semibold">Quel type de logement concerne votre demande ?</Label>
+                    <div className="grid gap-3 grid-cols-2">
+                      <SelectButton active={habType === "Appartement"} label="Appartement" onClick={() => setHabType("Appartement")} />
+                      <SelectButton active={habType === "Maison"} label="Maison" onClick={() => setHabType("Maison")} />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {selectedInsuranceType === "emprunteur" && (
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <Label className="text-slate-950 font-semibold">De quel projet s'agit-il ?</Label>
+                    <div className="grid gap-3 grid-cols-1 sm:grid-cols-2">
+                      <SelectButton active={empProjet === "Nouveau prêt"} label="Nouveau prêt immobilier" onClick={() => setEmpProjet("Nouveau prêt")} />
+                      <SelectButton active={empProjet === "Changement d'assurance (Loi Lemoine)"} label="Changer d'assurance (Loi Lemoine)" onClick={() => setEmpProjet("Changement d'assurance (Loi Lemoine)")} />
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <Label className="text-slate-950 font-semibold">Quel est le montant du prêt ?</Label>
+                    <div className="grid gap-3 grid-cols-1 sm:grid-cols-3">
+                      <SelectButton active={empMontant === "Moins de 150 000 €"} label="< 150 000 €" onClick={() => setEmpMontant("Moins de 150 000 €")} />
+                      <SelectButton active={empMontant === "De 150 000 € à 300 000 €"} label="150k - 300k €" onClick={() => setEmpMontant("De 150 000 € à 300 000 €")} />
+                      <SelectButton active={empMontant === "Plus de 300 000 €"} label="> 300 000 €" onClick={() => setEmpMontant("Plus de 300 000 €")} />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {selectedInsuranceType === "chauffage" && (
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <Label className="text-slate-950 font-semibold">Quel est votre type d'équipement ?</Label>
+                    <div className="grid gap-3 grid-cols-2">
+                      <SelectButton active={chauffType === "Chaudière Gaz/Fioul"} label="Chaudière" onClick={() => setChauffType("Chaudière Gaz/Fioul")} />
+                      <SelectButton active={chauffType === "Pompe à Chaleur (PAC)"} label="Pompe à Chaleur" onClick={() => setChauffType("Pompe à Chaleur (PAC)")} />
+                      <SelectButton active={chauffType === "Climatisation Réversible"} label="Climatisation" onClick={() => setChauffType("Climatisation Réversible")} />
+                      <SelectButton active={chauffType === "Autre (Poêle, Solaire...)"} label="Autre" onClick={() => setChauffType("Autre (Poêle, Solaire...)")} />
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <Label className="text-slate-950 font-semibold">Quel est votre besoin immédiat ?</Label>
+                    <div className="grid gap-3 grid-cols-1 sm:grid-cols-2">
+                      <SelectButton active={chauffBesoin === "Souscrire un contrat d'entretien"} label="Contrat d'entretien annuel" onClick={() => setChauffBesoin("Souscrire un contrat d'entretien")} />
+                      <SelectButton active={chauffBesoin === "Dépannage urgent / Réparation"} label="Dépannage / Réparation" onClick={() => setChauffBesoin("Dépannage urgent / Réparation")} />
+                    </div>
+                  </div>
+                </div>
+              )}
+
 
             </div>
           )}

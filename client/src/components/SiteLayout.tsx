@@ -249,6 +249,11 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
                 <a href="/assurance-auto/formules" className="no-underline transition hover:text-sky-700">Tiers vs tous risques</a>
                 <a href="/assurance-auto/resiliation" className="no-underline transition hover:text-sky-700">Résilier son assurance</a>
               </div>
+              <p className="mt-6 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-slate-400">Professionnels</p>
+              <div className="flex flex-col gap-2.5 text-sm font-medium text-slate-600">
+                <a href="/assurance-rc-pro" className="no-underline transition hover:text-sky-700">RC Pro</a>
+                <a href="/assurance-vtc" className="no-underline transition hover:text-sky-700">Assurance VTC</a>
+              </div>
             </div>
 
             {/* Col 3 — Santé & Prévoyance */}
@@ -259,6 +264,12 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
                 <a href="/mutuelle-senior" className="no-underline transition hover:text-sky-700">Mutuelle senior</a>
                 <a href="/prevoyance" className="no-underline transition hover:text-sky-700">Prévoyance</a>
                 <a href="/prevoyance-independant" className="no-underline transition hover:text-sky-700">Prévoyance indépendant</a>
+              </div>
+              <p className="mt-6 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-slate-400">Habitat & Crédit</p>
+              <div className="flex flex-col gap-2.5 text-sm font-medium text-slate-600">
+                <a href="/assurance-habitation" className="no-underline transition hover:text-sky-700">Assurance Habitation</a>
+                <a href="/garantie-emprunteur" className="no-underline transition hover:text-sky-700">Garantie Emprunteur</a>
+                <a href="/entretien-chauffage" className="no-underline transition hover:text-sky-700">Entretien Chauffage</a>
               </div>
               <p className="mt-6 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-slate-400">À propos</p>
               <div className="flex flex-col gap-2.5 text-sm font-medium text-slate-600">

@@ -17,6 +17,11 @@ function Router() {
       <Route path="/assurance-auto">{() => <MarketingPage slug="auto" />}</Route>
       <Route path="/mutuelle-sante">{() => <MarketingPage slug="sante" />}</Route>
       <Route path="/prevoyance">{() => <MarketingPage slug="prevoyance" />}</Route>
+      <Route path="/assurance-vtc">{() => <MarketingPage slug="vtc" />}</Route>
+      <Route path="/assurance-rc-pro">{() => <MarketingPage slug="rcpro" />}</Route>
+      <Route path="/assurance-habitation">{() => <MarketingPage slug="habitation" />}</Route>
+      <Route path="/garantie-emprunteur">{() => <MarketingPage slug="emprunteur" />}</Route>
+      <Route path="/entretien-chauffage">{() => <MarketingPage slug="chauffage" />}</Route>
       <Route path="/assurance-auto-malusse">{() => <MarketingPage slug="malusse" />}</Route>
       <Route path="/assurance-auto-resilie">{() => <MarketingPage slug="resilie" />}</Route>
       <Route path="/assurance-auto-jeune-conducteur">{() => <MarketingPage slug="jeuneConducteur" />}</Route>
@@ -27,6 +32,10 @@ function Router() {
       {/* ── GOOGLE ADS LANDING PAGES ── */}
       <Route path="/devis-assurance-express" component={AdsLandingPage} />
       <Route path="/appel-assurance-immediat" component={AdsCallOnlyPage} />
+      {/* Redirections SEO/Ads pour éviter les erreurs 404 liées aux anciennes campagnes */}
+      <Route path="/landing-google-ads" component={AdsLandingPage} />
+      <Route path="/landing-call-only" component={AdsCallOnlyPage} />
+      
       <Route path="/mentions-legales" component={MentionsLegales} />
       {/* Cluster SEO pages — profondeur inspirée lelynx.fr */}
       <Route path="/assurance-auto/bonus-malus">{() => <MarketingPage slug="bonusMalus" />}</Route>

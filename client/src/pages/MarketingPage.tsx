@@ -225,12 +225,17 @@ function PageSections({ page }: { page: PageContent }) {
               Auto, santé et prévoyance dans un même langage de clarté et d'exigence.
             </h2>
           </div>
-          <div className="grid gap-5 lg:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {productHighlights.map((item) => (
-              <Card key={item.title} className="premium-panel border-slate-200">
-                <CardContent className="space-y-4 p-6">
-                  <h3 className="font-display text-2xl text-slate-950">{item.title}</h3>
-                  <p className="text-sm leading-7 text-slate-600">{item.description}</p>
+              <Card key={item.title} className="premium-panel border-slate-200 flex flex-col hover:border-sky-200 transition-colors cursor-pointer" onClick={() => window.location.href = item.path}>
+                <CardContent className="space-y-4 p-6 flex flex-col flex-1 relative">
+                  <div className="absolute top-0 right-6 -translate-y-1/2">
+                    <div className="inline-flex rounded-full bg-sky-50 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-sky-700 shadow-sm border border-sky-100">
+                      {item.badge}
+                    </div>
+                  </div>
+                  <h3 className="font-display text-xl text-slate-950 mt-1">{item.title}</h3>
+                  <p className="text-sm leading-7 text-slate-600 flex-1">{item.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -242,7 +247,7 @@ function PageSections({ page }: { page: PageContent }) {
       <section className="py-18 sm:py-22">
         <div className="container grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
           <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Questions fréquentes</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Vos Questions Fréquentes sur l'Assurance : Nos Réponses Claires</p>
             <h2 className="font-display text-3xl text-slate-950 sm:text-4xl">
               Des réponses utiles pour lever les hésitations avant le contact.
             </h2>
@@ -278,7 +283,7 @@ export default function MarketingPage({ slug }: { slug: keyof typeof pageContent
 
   useEffect(() => {
     if (page) {
-      updateDynamicSeo(page.seoTitle, page.seoDescription);
+      updateDynamicSeo(page.seoTitle, page.seoDescription, window.location.href);
       window.scrollTo(0, 0);
     }
   }, [page]);

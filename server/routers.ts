@@ -59,6 +59,14 @@ export const appRouter = router({
           console.warn("[Lead Alert Email] Failed to send owner email:", error);
         }
 
+        // Webhook d'automatisation (vers Make / Zapier)
+        // On ne l'await pas pour ne pas bloquer la réponse UI au client
+        import("./webhook").then(({ processNewLeadWebhook }) => {
+          processNewLeadWebhook(lead).catch(err => {
+            console.error("[Routers] Erreur non interceptée du Webhook:", err);
+          });
+        });
+
         return {
           success: true,
           leadId: lead.id,

@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Lead } from "./db/schema";
+import type { Lead } from "../drizzle/schema";
 
 export async function processNewLeadWebhook(lead: Lead) {
   // 1. Calcul du Score de Priorité

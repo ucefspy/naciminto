@@ -92,7 +92,8 @@ export async function getUserByOpenId(openId: string) {
 export async function createLead(lead: InsertLead) {
   const db = await getDb();
   if (!db) {
-    throw new Error("Database not available for lead creation");
+    console.warn("[Database] Base de données indisponible, on bypass la sauvegarde SQL (seul le webhook et l'email partiront).");
+    return { ...lead, id: Math.floor(Math.random() * 1000000) };
   }
 
   const insertedRows = await db.insert(leads).values(lead).$returningId();
@@ -115,7 +116,8 @@ export async function createLead(lead: InsertLead) {
 export async function markLeadOwnerNotified(leadId: number, notifiedAt = new Date()) {
   const db = await getDb();
   if (!db) {
-    throw new Error("Database not available for lead notification update");
+    console.warn("[Database] Base de données indisponible, on bypass le marqueur ownerNotified.");
+    return;
   }
 
   await db.update(leads).set({ ownerNotifiedAt: notifiedAt }).where(eq(leads.id, leadId));
@@ -124,7 +126,8 @@ export async function markLeadOwnerNotified(leadId: number, notifiedAt = new Dat
 export async function markLeadOwnerEmailSent(leadId: number, sentAt = new Date()) {
   const db = await getDb();
   if (!db) {
-    throw new Error("Database not available for lead email update");
+    console.warn("[Database] Base de données indisponible, on bypass le marqueur ownerEmailSent.");
+    return;
   }
 
   await db.update(leads).set({ ownerEmailSentAt: sentAt }).where(eq(leads.id, leadId));

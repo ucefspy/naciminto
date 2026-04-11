@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import ThankYou from "./pages/ThankYou";
 import Home from "./pages/Home";
 import MarketingPage from "./pages/MarketingPage";
 import MentionsLegales from "./pages/MentionsLegales";
@@ -37,6 +38,7 @@ function Router() {
       <Route path="/landing-call-only" component={AdsCallOnlyPage} />
       
       <Route path="/mentions-legales" component={MentionsLegales} />
+      <Route path="/merci" component={ThankYou} />
       {/* Cluster SEO pages — profondeur inspirée lelynx.fr */}
       <Route path="/assurance-auto/bonus-malus">{() => <MarketingPage slug="bonusMalus" />}</Route>
       <Route path="/assurance-auto/resiliation">{() => <MarketingPage slug="resiliationAuto" />}</Route>

@@ -298,20 +298,9 @@ export default function LeadCaptureForm({
         currency: "EUR",
       });
 
-      setIsSubmitted(true);
-      setStep(0);
-      reset({
-        ...defaultValues,
-        insuranceType: fixedInsuranceType ?? values.insuranceType,
-      });
-      setAutoProfil(""); setAutoFormule("");
-      setSanteProfil(""); setSanteGarantie("");
-      setPrevoyanceStatut(""); setPrevoyanceObjectif("");
-      setVtcStatut(""); setVtcFormule("");
-      setRcproSecteur(""); setRcproCA("");
-      setHabStatut(""); setHabType("");
-      setEmpProjet(""); setEmpMontant("");
-      setChauffType(""); setChauffBesoin("");
+      // Redirection vers la page de remerciement personnalisée
+      window.location.href = `/merci?type=${payload.insuranceType}`;
+      
     } catch (error) {
       console.error(error);
       toast.error("Une erreur est survenue. Veuillez réessayer ou nous appeler directement.");
